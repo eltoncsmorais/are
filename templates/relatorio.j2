@@ -1,0 +1,128 @@
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        color: rgb(32, 32, 32);
+        background-color: white;
+    }
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+    th, td {
+        padding: 5px;
+        text-align: left;
+    }
+    table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    table tr:hover {
+        background-color: #ddd;
+    }
+    table {
+        table-layout: auto;
+        width: auto;
+        text-align: center;
+    }
+    h1, h2 {
+        text-align: center;
+    }
+</style>
+<h1>Gráficos</h1>
+{{ fig1 }}
+{{ fig2 }}
+{{ fig3 }}
+{{ fig4 }}
+{{ fig5 }}
+{{ fig6 }}
+<h1>Estatísticas</h1>
+<p>Número total de linhas: {{ total }}</p>
+<p>Emoção mais comum: {{ emocao_mais_comum }}</p>
+<p>Grupo mais comum: {{ grupo_mais_comum }}</p>
+<br />
+<h3>Gerais - Emoção</h3>
+<table>
+    <tr>
+        <th>Mediana</th>
+        <th>Desvio Absoluto Médio</th>
+        <th>Desvio Padrão</th>
+    </tr>
+    <tr>
+        <td>{{ mean_emocao }}</td>
+        <td>{{ mad_emocao }}</td>
+        <td>{{ std_emocao }}</td>
+    </tr>
+</table>
+<br />
+<h3>Gerais - Grupo</h3>
+<table>
+    <tr>
+        <th>Mediana</th>
+        <th>Desvio Absoluto Médio</th>
+        <th>Desvio Padrão</th>
+    </tr>
+    <tr>
+        <td>{{ mean_grupo }}</td>
+        <td>{{ mad_grupo }}</td>
+        <td>{{ std_grupo }}</td>
+    </tr>
+</table>
+<br />
+<h3>Percentis por Emoção</h3>
+<table>
+    <tr>
+        <th>Emoção</th>
+        <th>Percentil</th>
+    </tr>
+    {% for emocao, percentil in percentis_emocao.items() %}
+        <tr>
+            <td>{{ emocao }}</td>
+            <td>{{ percentil }}</td>
+        </tr>
+    {% endfor %}
+</table>
+<br />
+<h3>Percentis por Grupo de Emoções</h3>
+<table>
+    <tr>
+        <th>Grupo</th>
+        <th>Percentil</th>
+    </tr>
+    {% for grupo, percentil in percentis_grupo.items() %}
+        <tr>
+            <td>{{ grupo }}</td>
+            <td>{{ percentil }}</td>
+        </tr>
+    {% endfor %}
+</table>
+<br />
+<h3>Somatório por Emoção</h3>
+<table>
+    <tr>
+        <th>Emoção</th>
+        <th>Total</th>
+    </tr>
+    {% for emocao, total in total_emocao.items() %}
+        <tr>
+            <td>{{ emocao }}</td>
+            <td>{{ total }}</td>
+        </tr>
+    {% endfor %}
+</table>
+<br />
+<h3>Somatório por Grupo de Emoções</h3>
+<table>
+    <tr>
+        <th>Grupo</th>
+        <th>Total</th>
+    </tr>
+    {% for grupo, total in total_grupo.items() %}
+        <tr>
+            <td>{{ grupo }}</td>
+            <td>{{ total }}</td>
+        </tr>
+    {% endfor %}
+</table>
